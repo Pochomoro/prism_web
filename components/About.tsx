@@ -5,7 +5,7 @@ import React from 'react'
 const About = () => {
     return (
         <section className="py-24 px-6">
-            <div className="max-w-7xl mx-auto">
+            <div className="min-w-7xl mx-auto">
                 {/* Badge */}
                 <div className="flex justify-center mb-8">
                     <span className="px-6 py-3 bg-purple-100 text-purple-700 font-medium rounded-full text-sm">
@@ -14,7 +14,7 @@ const About = () => {
                 </div>
 
                 {/* Titre principal */}
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center text-gray-900 mb-20">
+                <h2 className="font-title text-3xl md:text-4xl lg:text-5xl font-semibold text-center text-gray-800 mb-20">
                     Ce qui fait la différence
                 </h2>
 
@@ -42,12 +42,12 @@ const About = () => {
 
                         {/* Titre */}
                         <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3">
-                            Rencontres inclusives
+                            Inclusive
                         </h3>
 
                         {/* Description */}
                         <p className="text-gray-600 leading-relaxed">
-                            Trouvez des relations sincères dans une communauté ouverte et bienveillante.
+                            Rejoignez une communauté où chaque genre, chaque orientation et chaque histoire ont leur place.
                         </p>
                     </div>
 
@@ -72,12 +72,12 @@ const About = () => {
 
                         {/* Titre */}
                         <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3">
-                            Sécurité garantie
+                            Sécurisé
                         </h3>
 
                         {/* Description */}
                         <p className="text-gray-600 leading-relaxed">
-                            Chaque profil est validé par des institutions partenaires de confiance.
+                            Profils vérifiés, IA protectrice et bouton d’agression intégré : tout est pensé pour garantir un espace bienveillant et sans danger.
                         </p>
                     </div>
 
@@ -108,12 +108,12 @@ const About = () => {
 
                         {/* Titre */}
                         <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3">
-                            Accessibilité pour tous
+                            Unique
                         </h3>
 
                         {/* Description */}
                         <p className="text-gray-600 leading-relaxed">
-                            Un site pensé pour s'adapter aux besoins de chacun, sans barrière.
+                            Prism est bien plus qu’une app de rencontres, c’est la première plateforme pensée pour unir authenticité, inclusion et respect.
                         </p>
                     </div>
 
