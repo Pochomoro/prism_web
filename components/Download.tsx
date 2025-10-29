@@ -31,9 +31,8 @@ const Download = () => {
                     <h3 className="text-gray-900 font-title font-semibold text-2xl mb-2">
                         Et découvre un communauté respectueuse, solidaire et aimante
                     </h3>
-                    <button className="w-fit font-title text-lg rounded-full bg-white px-6 py-3 color-purple-600 hover:bg-grey-200 transition-all cursor-pointer">
+                    <button className="w-fit font-title text-lg rounded-full bg-white px-6 py-3 text-purple-900 hover:bg-grey-200 transition-all cursor-pointer">
                         Télécharge<span className="font-semibold"> Prism </span>pour IOS
-
                     </button>
                     <button className="w-fit font-title text-lg rounded-full bg-purple-600 px-6 py-3 text-white hover:bg-purple-700 transition-all cursor-pointer">
                         Télécharge<span className="font-semibold"> Prism </span>pour Android
