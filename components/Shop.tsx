@@ -64,7 +64,7 @@ const Shop = () => {
     ];
 
     return (
-        <section className="relative min-h-screen w-full bg-white overflow-hidden flex justify-center">
+        <section id="plans" className="relative min-h-screen w-full bg-white overflow-hidden flex justify-center">
             {/* Conteneur principal (grande carte autour) */}
             <div className="bg-gradient-to-br from-white via-purple-200/80 to-pink-300/80 p-10 w-full">
                 {/* Titre principal */}
