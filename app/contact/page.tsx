@@ -119,7 +119,6 @@ export default function FAQContact() {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        // Logique d'envoi du formulaire ici
         console.log('Formulaire soumis:', formData);
         alert('Merci pour votre message ! Nous vous répondrons dans les plus brefs délais.');
         setFormData({ nom: '', email: '', sujet: '', message: '' });
@@ -128,258 +127,497 @@ export default function FAQContact() {
     return (
         <div className="min-h-screen bg-gradient-to-br from-purple-50 via-slate-50 to-purple-50">
             <NavBar />
-            {/* Hero Section */}
-            <div className="relative overflow-hidden bg-gradient-to-r from-purple-600 to-purple-800">
-                <div className="absolute inset-0 bg-black opacity-10"></div>
-                <div className="relative max-w-7xl mx-auto px-6 py-20 md:py-28">
-                    <div className="text-center text-white">
-                        <div className="flex items-center justify-center mb-6">
-                            <div
-                                className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center">
-                                <Phone className="w-8 h-8 text-white" fill="white"/>
+
+            {/* ========== VERSION DESKTOP ========== */}
+            <div className="hidden md:block">
+                {/* Hero Section */}
+                <div className="relative overflow-hidden bg-gradient-to-r from-purple-600 to-purple-800">
+                    <div className="absolute inset-0 bg-black opacity-10"></div>
+                    <div className="relative max-w-7xl mx-auto px-6 py-20 md:py-28">
+                        <div className="text-center text-white">
+                            <div className="flex items-center justify-center mb-6">
+                                <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center">
+                                    <Phone className="w-8 h-8 text-white" fill="white"/>
+                                </div>
+                            </div>
+                            <h1 className="font-title text-4xl md:text-5xl font-bold mb-6">
+                                Comment pouvons-nous vous aider
+                            </h1>
+                            <p className="text-xl md:text-xl text-purple-100 max-w-3xl mx-auto">
+                                Trouvez rapidement des réponses ou contactez-nous directement
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                {/* FAQ Section */}
+                <div className="max-w-5xl mx-auto px-6 py-16 md:py-20">
+                    <div className="text-center mb-12">
+                        <h2 className="font-title text-3xl md:text-4xl font-semibold text-slate-900 mb-4">
+                            Questions Fréquentes
+                        </h2>
+                        <p className="text-lg text-slate-600">
+                            Découvrez les réponses aux questions les plus courantes
+                        </p>
+                    </div>
+
+                    {/* Category Tabs */}
+                    <div className="mb-8 overflow-x-auto">
+                        <div className="flex gap-3 min-w-max md:justify-center pb-2">
+                            {categories.map((category) => (
+                                <button
+                                    key={category.id}
+                                    onClick={() => {
+                                        setActiveCategory(category.id);
+                                        setOpenFAQ(null);
+                                    }}
+                                    className={`px-6 py-3 rounded-xl font-medium transition-all flex items-center gap-2 whitespace-nowrap ${
+                                        activeCategory === category.id
+                                            ? 'bg-purple-600 text-white shadow-lg scale-105'
+                                            : 'bg-white text-slate-700 hover:bg-purple-50 border border-slate-200'
+                                    }`}
+                                >
+                                    <span className="text-xl">{category.icon}</span>
+                                    <span>{category.name}</span>
+                                    <span className={`text-xs px-2 py-1 rounded-full ${
+                                        activeCategory === category.id
+                                            ? 'bg-white/20'
+                                            : 'bg-slate-100'
+                                    }`}>
+                                        {category.id === 'all'
+                                            ? faqData.length
+                                            : faqData.filter(faq => faq.category === category.id).length}
+                                    </span>
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* FAQ Items */}
+                    <div className="space-y-4">
+                        {filteredFAQs.length === 0 ? (
+                            <div className="text-center py-12 bg-white rounded-xl shadow-md">
+                                <p className="text-slate-500 text-lg">Aucune question trouvée dans cette catégorie.</p>
+                            </div>
+                        ) : (
+                            filteredFAQs.map((faq, index) => (
+                                <div
+                                    key={index}
+                                    className="bg-white rounded-xl shadow-md overflow-hidden border border-slate-200 hover:shadow-lg transition-shadow"
+                                >
+                                    <button
+                                        onClick={() => setOpenFAQ(openFAQ === index ? null : index)}
+                                        className="w-full px-6 py-5 text-left flex items-center justify-between hover:bg-slate-50 transition-colors"
+                                    >
+                                        <span className="font-semibold font-title text-lg text-slate-900 pr-8">
+                                            {faq.question}
+                                        </span>
+                                        <div
+                                            className={`flex-shrink-0 w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center transition-transform ${openFAQ === index ? 'rotate-180' : ''}`}>
+                                            <svg
+                                                className="w-5 h-5 text-purple-600"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                viewBox="0 0 24 24"
+                                            >
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                                                      d="M19 9l-7 7-7-7"/>
+                                            </svg>
+                                        </div>
+                                    </button>
+
+                                    <div
+                                        className={`overflow-hidden transition-all duration-300 ${
+                                            openFAQ === index ? 'max-h-96' : 'max-h-0'
+                                        }`}
+                                    >
+                                        <div className="px-6 pb-5 text-slate-600 leading-relaxed bg-slate-50">
+                                            {faq.answer}
+                                        </div>
+                                    </div>
+                                </div>
+                            ))
+                        )}
+                    </div>
+
+                    {/* Divider */}
+                    <div className="flex items-center my-16">
+                        <div className="flex-1 border-t border-slate-300"></div>
+                        <span className="px-6 text-slate-500 font-medium">ou</span>
+                        <div className="flex-1 border-t border-slate-300"></div>
+                    </div>
+
+                    {/* Contact Form Section */}
+                    <div className="text-center mb-12">
+                        <h2 className="font-title text-3xl md:text-4xl font-semibold text-slate-900 mb-4">
+                            Contactez-nous
+                        </h2>
+                        <p className="text-lg text-slate-600">
+                            Vous n'avez pas trouvé de réponse ? Envoyez-nous un message
+                        </p>
+                    </div>
+
+                    <div id="contactForm" className="bg-white rounded-2xl shadow-xl border border-slate-200 p-8 md:p-10">
+                        <form onSubmit={handleSubmit} className="space-y-6">
+                            <div>
+                                <label htmlFor="nom" className="block text-sm font-semibold text-slate-900 mb-2">
+                                    Nom complet <span className="text-red-500">*</span>
+                                </label>
+                                <input
+                                    type="text"
+                                    id="nom"
+                                    name="nom"
+                                    value={formData.nom}
+                                    onChange={handleChange}
+                                    required
+                                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition-all"
+                                    placeholder="Votre nom"
+                                />
+                            </div>
+
+                            <div>
+                                <label htmlFor="email" className="block text-sm font-semibold text-slate-900 mb-2">
+                                    Adresse email <span className="text-red-500">*</span>
+                                </label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    required
+                                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition-all"
+                                    placeholder="votre@email.com"
+                                />
+                            </div>
+
+                            <div>
+                                <label htmlFor="sujet" className="block text-sm font-semibold text-slate-900 mb-2">
+                                    Sujet <span className="text-red-500">*</span>
+                                </label>
+                                <select
+                                    id="sujet"
+                                    name="sujet"
+                                    value={formData.sujet}
+                                    onChange={handleChange}
+                                    required
+                                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition-all bg-white"
+                                >
+                                    <option value="">Sélectionnez un sujet</option>
+                                    <option value="compte">Problème de compte</option>
+                                    <option value="technique">Problème technique</option>
+                                    <option value="securite">Question de sécurité</option>
+                                    <option value="paiement">Question de paiement</option>
+                                    <option value="signalement">Signalement</option>
+                                    <option value="autre">Autre</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label htmlFor="message" className="block text-sm font-semibold text-slate-900 mb-2">
+                                    Message <span className="text-red-500">*</span>
+                                </label>
+                                <textarea
+                                    id="message"
+                                    name="message"
+                                    value={formData.message}
+                                    onChange={handleChange}
+                                    required
+                                    rows={6}
+                                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition-all resize-none"
+                                    placeholder="Décrivez votre problème ou votre question en détail..."
+                                />
+                            </div>
+
+                            <button
+                                type="submit"
+                                className="w-full bg-purple-600 text-white font-semibold py-4 rounded-lg hover:bg-purple-700 transition-colors shadow-lg hover:shadow-xl"
+                            >
+                                Envoyer le message
+                            </button>
+                        </form>
+
+                        <div className="mt-8 pt-8 border-t border-slate-200">
+                            <p className="text-center text-slate-600 mb-4">Autres moyens de nous contacter :</p>
+                            <div className="flex flex-col sm:flex-row justify-center items-center gap-6 text-sm">
+                                <div className="flex items-center space-x-2">
+                                    <svg className="w-5 h-5 text-purple-600" fill="none" stroke="currentColor"
+                                         viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                                              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                    </svg>
+                                    <span className="text-slate-700">support@votresite.com</span>
+                                </div>
+                                <div className="flex items-center space-x-2">
+                                    <svg className="w-5 h-5 text-purple-600" fill="none" stroke="currentColor"
+                                         viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                                              d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                    </svg>
+                                    <span className="text-slate-700">+33 1 23 45 67 89</span>
+                                </div>
                             </div>
                         </div>
-                        <h1 className="font-title text-4xl md:text-5xl font-bold mb-6">
-                            Comment pouvons-nous vous aider
-                        </h1>
-                        <p className="text-xl md:text-xl text-purple-100 max-w-3xl mx-auto">
-                            Trouvez rapidement des réponses ou contactez-nous directement
+                    </div>
+
+                    <div className="mt-8 bg-purple-50 border border-purple-200 rounded-xl p-6 text-center">
+                        <div className="flex items-center justify-center space-x-2 mb-2">
+                            <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <span className="font-semibold text-purple-900">Temps de réponse moyen</span>
+                        </div>
+                        <p className="text-purple-700">
+                            Notre équipe vous répondra dans les <span className="font-bold">24 heures</span>
                         </p>
                     </div>
                 </div>
             </div>
 
-            {/* FAQ Section */}
-            <div className="max-w-5xl mx-auto px-6 py-16 md:py-20">
-                <div className="text-center mb-12">
-                    <h2 className="font-title text-3xl md:text-4xl font-semibold text-slate-900 mb-4">
-                        Questions Fréquentes
-                    </h2>
-                    <p className="text-lg text-slate-600">
-                        Découvrez les réponses aux questions les plus courantes
-                    </p>
-                </div>
-
-                {/* Category Tabs */}
-                <div className="mb-8 overflow-x-auto">
-                    <div className="flex gap-3 min-w-max md:justify-center pb-2">
-                        {categories.map((category) => (
-                            <button
-                                key={category.id}
-                                onClick={() => {
-                                    setActiveCategory(category.id);
-                                    setOpenFAQ(null);
-                                }}
-                                className={`px-6 py-3 rounded-xl font-medium transition-all flex items-center gap-2 whitespace-nowrap ${
-                                    activeCategory === category.id
-                                        ? 'bg-purple-600 text-white shadow-lg scale-105'
-                                        : 'bg-white text-slate-700 hover:bg-purple-50 border border-slate-200'
-                                }`}
-                            >
-                                <span className="text-xl">{category.icon}</span>
-                                <span>{category.name}</span>
-                                <span className={`text-xs px-2 py-1 rounded-full ${
-                                    activeCategory === category.id
-                                        ? 'bg-white/20'
-                                        : 'bg-slate-100'
-                                }`}>
-                                    {category.id === 'all'
-                                        ? faqData.length
-                                        : faqData.filter(faq => faq.category === category.id).length}
-                                </span>
-                            </button>
-                        ))}
-                    </div>
-                </div>
-
-                {/* FAQ Items */}
-                <div className="space-y-4">
-                    {filteredFAQs.length === 0 ? (
-                        <div className="text-center py-12 bg-white rounded-xl shadow-md">
-                            <p className="text-slate-500 text-lg">Aucune question trouvée dans cette catégorie.</p>
-                        </div>
-                    ) : (
-                        filteredFAQs.map((faq, index) => (
-                            <div
-                                key={index}
-                                className="bg-white rounded-xl shadow-md overflow-hidden border border-slate-200 hover:shadow-lg transition-shadow"
-                            >
-                                <button
-                                    onClick={() => setOpenFAQ(openFAQ === index ? null : index)}
-                                    className="w-full px-6 py-5 text-left flex items-center justify-between hover:bg-slate-50 transition-colors"
-                                >
-                                    <span className="font-semibold font-title text-lg text-slate-900 pr-8">
-                                        {faq.question}
-                                    </span>
-                                    <div
-                                        className={`flex-shrink-0 w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center transition-transform ${openFAQ === index ? 'rotate-180' : ''}`}>
-                                        <svg
-                                            className="w-5 h-5 text-purple-600"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            viewBox="0 0 24 24"
-                                        >
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                                                  d="M19 9l-7 7-7-7"/>
-                                        </svg>
-                                    </div>
-                                </button>
-
-                                <div
-                                    className={`overflow-hidden transition-all duration-300 ${
-                                        openFAQ === index ? 'max-h-96' : 'max-h-0'
-                                    }`}
-                                >
-                                    <div className="px-6 pb-5 text-slate-600 leading-relaxed bg-slate-50">
-                                        {faq.answer}
-                                    </div>
+            {/* ========== VERSION MOBILE ========== */}
+            <div className="md:hidden">
+                {/* Hero Section Mobile */}
+                <div className="relative overflow-hidden bg-gradient-to-r from-purple-600 to-purple-800">
+                    <div className="absolute inset-0 bg-black opacity-10"></div>
+                    <div className="relative px-6 py-16">
+                        <div className="text-center text-white">
+                            <div className="flex items-center justify-center mb-4">
+                                <div className="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center">
+                                    <Phone className="w-7 h-7 text-white" fill="white"/>
                                 </div>
                             </div>
-                        ))
-                    )}
-                </div>
-
-                {/* Divider */}
-                <div className="flex items-center my-16">
-                    <div className="flex-1 border-t border-slate-300"></div>
-                    <span className="px-6 text-slate-500 font-medium">ou</span>
-                    <div className="flex-1 border-t border-slate-300"></div>
-                </div>
-
-                {/* Contact Form Section */}
-                <div className="text-center mb-12">
-                    <h2 className="font-title text-3xl md:text-4xl font-semibold text-slate-900 mb-4">
-                        Contactez-nous
-                    </h2>
-                    <p className="text-lg text-slate-600">
-                        Vous n'avez pas trouvé de réponse ? Envoyez-nous un message
-                    </p>
-                </div>
-
-                <div id="contactForm" className="bg-white rounded-2xl shadow-xl border border-slate-200 p-8 md:p-10">
-                    <form onSubmit={handleSubmit} className="space-y-6">
-
-                        {/* Nom */}
-                        <div>
-                            <label htmlFor="nom" className="block text-sm font-semibold text-slate-900 mb-2">
-                                Nom complet <span className="text-red-500">*</span>
-                            </label>
-                            <input
-                                type="text"
-                                id="nom"
-                                name="nom"
-                                value={formData.nom}
-                                onChange={handleChange}
-                                required
-                                className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition-all"
-                                placeholder="Votre nom"
-                            />
+                            <h1 className="font-title text-3xl font-bold mb-4">
+                                Comment pouvons-nous vous aider ?
+                            </h1>
+                            <p className="text-base text-purple-100">
+                                Trouvez des réponses ou contactez-nous
+                            </p>
                         </div>
+                    </div>
+                </div>
 
-                        {/* Email */}
-                        <div>
-                            <label htmlFor="email" className="block text-sm font-semibold text-slate-900 mb-2">
-                                Adresse email <span className="text-red-500">*</span>
-                            </label>
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                value={formData.email}
-                                onChange={handleChange}
-                                required
-                                className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition-all"
-                                placeholder="votre@email.com"
-                            />
+                {/* FAQ Section Mobile */}
+                <div className="px-4 py-10">
+                    <div className="text-center mb-8">
+                        <h2 className="font-title text-2xl font-bold text-slate-900 mb-2">
+                            Questions Fréquentes
+                        </h2>
+                        <p className="text-sm text-slate-600">
+                            Réponses aux questions courantes
+                        </p>
+                    </div>
+
+                    {/* Category Tabs Mobile - Horizontal Scroll */}
+                    <div className="mb-6 -mx-4 px-4 overflow-x-auto">
+                        <div className="flex gap-2 pb-2">
+                            {categories.map((category) => (
+                                <button
+                                    key={category.id}
+                                    onClick={() => {
+                                        setActiveCategory(category.id);
+                                        setOpenFAQ(null);
+                                    }}
+                                    className={`px-4 py-2 rounded-xl font-medium transition-all flex items-center gap-2 whitespace-nowrap text-sm flex-shrink-0 ${
+                                        activeCategory === category.id
+                                            ? 'bg-purple-600 text-white shadow-lg'
+                                            : 'bg-white text-slate-700 border border-slate-200'
+                                    }`}
+                                >
+                                    <span className="text-base">{category.icon}</span>
+                                    <span>{category.name}</span>
+                                    <span className={`text-xs px-1.5 py-0.5 rounded-full ${
+                                        activeCategory === category.id
+                                            ? 'bg-white/20'
+                                            : 'bg-slate-100'
+                                    }`}>
+                                        {category.id === 'all'
+                                            ? faqData.length
+                                            : faqData.filter(faq => faq.category === category.id).length}
+                                    </span>
+                                </button>
+                            ))}
                         </div>
+                    </div>
 
-                        {/* Sujet */}
-                        <div>
-                            <label htmlFor="sujet" className="block text-sm font-semibold text-slate-900 mb-2">
-                                Sujet <span className="text-red-500">*</span>
-                            </label>
-                            <select
-                                id="sujet"
-                                name="sujet"
-                                value={formData.sujet}
-                                onChange={handleChange}
-                                required
-                                className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition-all bg-white"
+                    {/* FAQ Items Mobile */}
+                    <div className="space-y-3">
+                        {filteredFAQs.length === 0 ? (
+                            <div className="text-center py-8 bg-white rounded-xl shadow-md">
+                                <p className="text-slate-500 text-sm">Aucune question trouvée.</p>
+                            </div>
+                        ) : (
+                            filteredFAQs.map((faq, index) => (
+                                <div
+                                    key={index}
+                                    className="bg-white rounded-xl shadow-md overflow-hidden border border-slate-200"
+                                >
+                                    <button
+                                        onClick={() => setOpenFAQ(openFAQ === index ? null : index)}
+                                        className="w-full px-4 py-4 text-left flex items-start justify-between"
+                                    >
+                                        <span className="font-semibold font-title text-sm text-slate-900 pr-3 leading-snug">
+                                            {faq.question}
+                                        </span>
+                                        <div
+                                            className={`flex-shrink-0 w-7 h-7 bg-purple-100 rounded-lg flex items-center justify-center transition-transform mt-0.5 ${openFAQ === index ? 'rotate-180' : ''}`}>
+                                            <svg
+                                                className="w-4 h-4 text-purple-600"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                viewBox="0 0 24 24"
+                                            >
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                                                      d="M19 9l-7 7-7-7"/>
+                                            </svg>
+                                        </div>
+                                    </button>
+
+                                    <div
+                                        className={`overflow-hidden transition-all duration-300 ${
+                                            openFAQ === index ? 'max-h-96' : 'max-h-0'
+                                        }`}
+                                    >
+                                        <div className="px-4 pb-4 text-slate-600 text-sm leading-relaxed bg-slate-50">
+                                            {faq.answer}
+                                        </div>
+                                    </div>
+                                </div>
+                            ))
+                        )}
+                    </div>
+
+                    {/* Divider Mobile */}
+                    <div className="flex items-center my-10">
+                        <div className="flex-1 border-t border-slate-300"></div>
+                        <span className="px-4 text-slate-500 font-medium text-sm">ou</span>
+                        <div className="flex-1 border-t border-slate-300"></div>
+                    </div>
+
+                    {/* Contact Form Section Mobile */}
+                    <div className="text-center mb-8">
+                        <h2 className="font-title text-2xl font-bold text-slate-900 mb-2">
+                            Contactez-nous
+                        </h2>
+                        <p className="text-sm text-slate-600">
+                            Envoyez-nous un message
+                        </p>
+                    </div>
+
+                    <div className="bg-white rounded-2xl shadow-lg border border-slate-200 p-6">
+                        <form onSubmit={handleSubmit} className="space-y-5">
+                            <div>
+                                <label htmlFor="nom-mobile" className="block text-sm font-semibold text-slate-900 mb-2">
+                                    Nom complet <span className="text-red-500">*</span>
+                                </label>
+                                <input
+                                    type="text"
+                                    id="nom-mobile"
+                                    name="nom"
+                                    value={formData.nom}
+                                    onChange={handleChange}
+                                    required
+                                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition-all text-sm"
+                                    placeholder="Votre nom"
+                                />
+                            </div>
+
+                            <div>
+                                <label htmlFor="email-mobile" className="block text-sm font-semibold text-slate-900 mb-2">
+                                    Email <span className="text-red-500">*</span>
+                                </label>
+                                <input
+                                    type="email"
+                                    id="email-mobile"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    required
+                                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition-all text-sm"
+                                    placeholder="votre@email.com"
+                                />
+                            </div>
+
+                            <div>
+                                <label htmlFor="sujet-mobile" className="block text-sm font-semibold text-slate-900 mb-2">
+                                    Sujet <span className="text-red-500">*</span>
+                                </label>
+                                <select
+                                    id="sujet-mobile"
+                                    name="sujet"
+                                    value={formData.sujet}
+                                    onChange={handleChange}
+                                    required
+                                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition-all bg-white text-sm"
+                                >
+                                    <option value="">Sélectionnez un sujet</option>
+                                    <option value="compte">Problème de compte</option>
+                                    <option value="technique">Problème technique</option>
+                                    <option value="securite">Question de sécurité</option>
+                                    <option value="paiement">Question de paiement</option>
+                                    <option value="signalement">Signalement</option>
+                                    <option value="autre">Autre</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label htmlFor="message-mobile" className="block text-sm font-semibold text-slate-900 mb-2">
+                                    Message <span className="text-red-500">*</span>
+                                </label>
+                                <textarea
+                                    id="message-mobile"
+                                    name="message"
+                                    value={formData.message}
+                                    onChange={handleChange}
+                                    required
+                                    rows={5}
+                                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition-all resize-none text-sm"
+                                    placeholder="Décrivez votre problème..."
+                                />
+                            </div>
+
+                            <button
+                                type="submit"
+                                className="w-full bg-purple-600 text-white font-semibold py-3 rounded-lg hover:bg-purple-700 transition-colors shadow-lg text-sm"
                             >
-                                <option value="">Sélectionnez un sujet</option>
-                                <option value="compte">Problème de compte</option>
-                                <option value="technique">Problème technique</option>
-                                <option value="securite">Question de sécurité</option>
-                                <option value="paiement">Question de paiement</option>
-                                <option value="signalement">Signalement</option>
-                                <option value="autre">Autre</option>
-                            </select>
-                        </div>
+                                Envoyer le message
+                            </button>
+                        </form>
 
-                        {/* Message */}
-                        <div>
-                            <label htmlFor="message" className="block text-sm font-semibold text-slate-900 mb-2">
-                                Message <span className="text-red-500">*</span>
-                            </label>
-                            <textarea
-                                id="message"
-                                name="message"
-                                value={formData.message}
-                                onChange={handleChange}
-                                required
-                                rows={6}
-                                className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition-all resize-none"
-                                placeholder="Décrivez votre problème ou votre question en détail..."
-                            />
-                        </div>
-
-                        {/* Submit Button */}
-                        <button
-                            type="submit"
-                            className="w-full bg-purple-600 text-white font-semibold py-4 rounded-lg hover:bg-purple-700 transition-colors shadow-lg hover:shadow-xl"
-                        >
-                            Envoyer le message
-                        </button>
-                    </form>
-
-                    {/* Contact Info */}
-                    <div className="mt-8 pt-8 border-t border-slate-200">
-                        <p className="text-center text-slate-600 mb-4">Autres moyens de nous contacter :</p>
-                        <div className="flex flex-col sm:flex-row justify-center items-center gap-6 text-sm">
-                            <div className="flex items-center space-x-2">
-                                <svg className="w-5 h-5 text-purple-600" fill="none" stroke="currentColor"
-                                     viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                                          d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                                </svg>
-                                <span className="text-slate-700">support@votresite.com</span>
-                            </div>
-                            <div className="flex items-center space-x-2">
-                                <svg className="w-5 h-5 text-purple-600" fill="none" stroke="currentColor"
-                                     viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                                          d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-                                </svg>
-                                <span className="text-slate-700">+33 1 23 45 67 89</span>
+                        <div className="mt-6 pt-6 border-t border-slate-200">
+                            <p className="text-center text-slate-600 mb-3 text-xs">Autres moyens :</p>
+                            <div className="space-y-3 text-xs">
+                                <div className="flex items-center justify-center gap-2">
+                                    <svg className="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                                              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                    </svg>
+                                    <span className="text-slate-700">support@votresite.com</span>
+                                </div>
+                                <div className="flex items-center justify-center gap-2">
+                                    <svg className="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                                              d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                    </svg>
+                                    <span className="text-slate-700">+33 1 23 45 67 89</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                {/* Response Time Info */}
-                <div className="mt-8 bg-purple-50 border border-purple-200 rounded-xl p-6 text-center">
-                    <div className="flex items-center justify-center space-x-2 mb-2">
-                        <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                        </svg>
-                        <span className="font-semibold text-purple-900">Temps de réponse moyen</span>
+                    <div className="mt-6 bg-purple-50 border border-purple-200 rounded-xl p-5 text-center">
+                        <div className="flex items-center justify-center gap-2 mb-2">
+                            <svg className="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <span className="font-semibold text-purple-900 text-sm">Réponse sous 24h</span>
+                        </div>
+                        <p className="text-purple-700 text-xs">
+                            Notre équipe vous répondra rapidement
+                        </p>
                     </div>
-                    <p className="text-purple-700">
-                        Notre équipe vous répondra dans les <span className="font-bold">24 heures</span>
-                    </p>
                 </div>
-
             </div>
         </div>
     );

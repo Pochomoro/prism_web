@@ -4,29 +4,30 @@ import React from 'react'
 
 const About = () => {
     return (
-        <section className="py-24 px-6">
-            <div className="min-w-7xl mx-auto">
-                {/* Badge */}
-                <div className="flex justify-center mb-8">
-                    <span className="px-6 py-3 bg-purple-100 text-purple-700 font-medium rounded-full text-sm">
-                        Fonctionnalités
-                    </span>
+        <section className="py-12 md:py-24 px-4 md:px-6">
+            <div className="max-w-7xl mx-auto">
+                <div className="flex items-center justify-center">
+                    {/* Badge */}
+                    <div className="inline-flex items-center gap-3 bg-purple-50 px-4 md:px-5 py-2 md:py-2.5 rounded-full border border-purple-200 mb-6 md:mb-8">
+                        <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
+                        <span className="text-purple-700 font-title font-medium text-xs md:text-sm">Fonctionnalités</span>
+                    </div>
                 </div>
 
                 {/* Titre principal */}
-                <h2 className="font-title text-3xl md:text-4xl lg:text-5xl font-semibold text-center text-gray-800 mb-20">
+                <h2 className="font-title text-2xl md:text-4xl lg:text-5xl font-semibold text-center text-gray-800 mb-12 md:mb-20 px-4">
                     Ce qui fait la différence
                 </h2>
 
                 {/* Grille de fonctionnalités */}
-                <div className="grid md:grid-cols-3 gap-12 lg:gap-16 max-w-6xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 lg:gap-16 max-w-6xl mx-auto">
 
                     {/* Feature 1 - Rencontres inclusives */}
-                    <div className="flex flex-col items-center text-center group">
+                    <div className="flex flex-col items-center text-center group bg-gradient-to-br from-pink-50 to-white md:bg-none p-6 md:p-0 rounded-3xl md:rounded-none border border-pink-100 md:border-0">
                         {/* Icône */}
-                        <div className="w-20 h-20 bg-gradient-to-br from-pink-400 to-pink-600 rounded-2xl flex items-center justify-center mb-6 transform transition-all duration-300 group-hover:scale-110">
+                        <div className="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-pink-400 to-pink-600 rounded-2xl flex items-center justify-center mb-4 md:mb-6 transform transition-all duration-300 group-hover:scale-110 shadow-lg">
                             <svg
-                                className="w-10 h-10 text-white"
+                                className="w-8 h-8 md:w-10 md:h-10 text-white"
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
@@ -41,22 +42,22 @@ const About = () => {
                         </div>
 
                         {/* Titre */}
-                        <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3">
+                        <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-2 md:mb-3">
                             Inclusive
                         </h3>
 
                         {/* Description */}
-                        <p className="text-gray-600 leading-relaxed">
+                        <p className="text-sm md:text-base text-gray-600 leading-relaxed">
                             Rejoignez une communauté où chaque genre, chaque orientation et chaque histoire ont leur place.
                         </p>
                     </div>
 
                     {/* Feature 2 - Sécurité garantie */}
-                    <div className="flex flex-col items-center text-center group">
+                    <div className="flex flex-col items-center text-center group bg-gradient-to-br from-blue-50 to-white md:bg-none p-6 md:p-0 rounded-3xl md:rounded-none border border-blue-100 md:border-0">
                         {/* Icône */}
-                        <div className="w-20 h-20 bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl flex items-center justify-center mb-6 transform transition-all duration-300 group-hover:scale-110">
+                        <div className="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl flex items-center justify-center mb-4 md:mb-6 transform transition-all duration-300 group-hover:scale-110 shadow-lg">
                             <svg
-                                className="w-10 h-10 text-white"
+                                className="w-8 h-8 md:w-10 md:h-10 text-white"
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
@@ -71,22 +72,22 @@ const About = () => {
                         </div>
 
                         {/* Titre */}
-                        <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3">
+                        <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-2 md:mb-3">
                             Sécurisé
                         </h3>
 
                         {/* Description */}
-                        <p className="text-gray-600 leading-relaxed">
-                            Profils vérifiés, IA protectrice et bouton d’agression intégré : tout est pensé pour garantir un espace bienveillant et sans danger.
+                        <p className="text-sm md:text-base text-gray-600 leading-relaxed">
+                            Profils vérifiés, IA protectrice et bouton d'agression intégré : tout est pensé pour garantir un espace bienveillant et sans danger.
                         </p>
                     </div>
 
                     {/* Feature 3 - Accessibilité pour tous */}
-                    <div className="flex flex-col items-center text-center group">
+                    <div className="flex flex-col items-center text-center group bg-gradient-to-br from-purple-50 to-white md:bg-none p-6 md:p-0 rounded-3xl md:rounded-none border border-purple-100 md:border-0">
                         {/* Icône */}
-                        <div className="w-20 h-20 bg-gradient-to-br from-purple-400 to-purple-600 rounded-2xl flex items-center justify-center mb-6 transform transition-all duration-300 group-hover:scale-110">
+                        <div className="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-purple-400 to-purple-600 rounded-2xl flex items-center justify-center mb-4 md:mb-6 transform transition-all duration-300 group-hover:scale-110 shadow-lg">
                             <svg
-                                className="w-10 h-10 text-white"
+                                className="w-8 h-8 md:w-10 md:h-10 text-white"
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
@@ -107,13 +108,13 @@ const About = () => {
                         </div>
 
                         {/* Titre */}
-                        <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3">
+                        <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-2 md:mb-3">
                             Unique
                         </h3>
 
                         {/* Description */}
-                        <p className="text-gray-600 leading-relaxed">
-                            Prism est bien plus qu’une app de rencontres, c’est la première plateforme pensée pour unir authenticité, inclusion et respect.
+                        <p className="text-sm md:text-base text-gray-600 leading-relaxed">
+                            Prism est bien plus qu'une app de rencontres, c'est la première plateforme pensée pour unir authenticité, inclusion et respect.
                         </p>
                     </div>
 

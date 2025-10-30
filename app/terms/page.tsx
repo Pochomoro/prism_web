@@ -20,7 +20,7 @@ export default function ConditionsGenerales() {
                     <Link
                         prefetch={false}
                         href="/"
-                        className="font-title text-lg rounded-full bg-purple-600 px-6 py-2 text-white hover:bg-purple-700 transition-all cursor-pointer">
+                        className="font-title text-lg rounded-2xl bg-purple-600 px-6 py-2 text-white hover:bg-purple-700 transition-all cursor-pointer">
                         Revenir à l'accueil
                     </Link>
                 </div>
