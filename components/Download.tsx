@@ -156,7 +156,7 @@ const Download = () => {
             </section>
 
             {/* ========== VERSION MOBILE ========== */}
-            <section id="Download" className="md:hidden relative min-h-screen flex items-center justify-center px-4 py-16">
+            <section id="Download" className="md:hidden relative flex items-center justify-center px-4 py-12">
                 <div className="w-full max-w-md mx-auto space-y-8">
                     {/* Badge */}
                     <div className="flex justify-center">

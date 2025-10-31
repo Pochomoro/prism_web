@@ -115,12 +115,12 @@ const NavBar = () => {
                         {!isLoggedIn ? (
                             <button
                                 onClick={() => setIsLoginOpen(true)}
-                                className="bg-white rounded-full px-6 py-2.5 flex items-center gap-3 hover:scale-105 transition-all duration-300">
+                                className="bg-white rounded-full px-6 py-2.5 flex items-center gap-3 hover:scale-105 transition-all duration-300 cursor-pointer">
                                 <span className="text-gray-800 font-medium text-sm font-title font-semibold">Se Connecter</span>
                             </button>
                         ) : (
                             <div className="flex items-center gap-4">
-                                <div className="bg-gradient-to-r from-purple-500 to-pink-500 rounded-full px-6 py-2.5 flex items-center gap-3 cursor-pointer">
+                                <div className="bg-gradient-to-r from-purple-500 to-pink-500 rounded-full px-6 py-2.5 flex items-center gap-3">
                                     <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
                                     <span className="text-white font-medium text-sm font-title font-semibold">Connecté</span>
                                 </div>

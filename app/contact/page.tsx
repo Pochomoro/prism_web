@@ -400,7 +400,7 @@ export default function FAQContact() {
                 {/* FAQ Section Mobile */}
                 <div className="px-4 py-10">
                     <div className="text-center mb-8">
-                        <h2 className="font-title text-2xl font-bold text-slate-900 mb-2">
+                        <h2 className="font-title text-2xl font-semibold text-slate-900 mb-2">
                             Questions Fréquentes
                         </h2>
                         <p className="text-sm text-slate-600">
@@ -496,7 +496,7 @@ export default function FAQContact() {
 
                     {/* Contact Form Section Mobile */}
                     <div className="text-center mb-8">
-                        <h2 className="font-title text-2xl font-bold text-slate-900 mb-2">
+                        <h2 className="font-title text-2xl font-semibold text-slate-900 mb-2">
                             Contactez-nous
                         </h2>
                         <p className="text-sm text-slate-600">

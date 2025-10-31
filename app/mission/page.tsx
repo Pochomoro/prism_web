@@ -515,7 +515,7 @@ export default function Mission() {
                             <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center">
                                 <Sparkles className="w-6 h-6 text-purple-600" />
                             </div>
-                            <h2 className="text-2xl font-title font-bold text-slate-900">
+                            <h2 className="text-2xl font-title font-semibold text-slate-900">
                                 Notre Engagement
                             </h2>
                         </div>
@@ -535,7 +535,7 @@ export default function Mission() {
                                         <div className={`w-10 h-10 bg-gradient-to-r ${tier.gradient} rounded-lg flex items-center justify-center`}>
                                             <span className="text-white text-base font-bold">{tier.percentage}%</span>
                                         </div>
-                                        <h3 className="text-base font-title font-bold text-slate-900">{tier.name}</h3>
+                                        <h3 className="text-base font-title font-semibold text-slate-900">{tier.name}</h3>
                                     </div>
                                     <p className="text-slate-600 text-sm">
                                         <span className="font-semibold">{tier.percentage}%</span> reversé aux associations
@@ -551,7 +551,7 @@ export default function Mission() {
                             <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center">
                                 <Calendar className="w-6 h-6 text-purple-600" />
                             </div>
-                            <h2 className="text-xl font-title font-bold text-slate-900">
+                            <h2 className="text-xl font-title font-semibold text-slate-900">
                                 Associations du mois
                             </h2>
                         </div>
@@ -584,7 +584,7 @@ export default function Mission() {
                                         </div>
                                         <div className="flex-1">
                                             <div className="flex items-start justify-between mb-1">
-                                                <h3 className="text-lg font-title font-bold text-slate-900">
+                                                <h3 className="text-lg font-title font-semibold text-slate-900">
                                                     {association.name}
                                                 </h3>
                                                 {selectedAssociation === association.id && (
@@ -646,7 +646,7 @@ export default function Mission() {
                             <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center">
                                 <Users className="w-6 h-6 text-purple-600" />
                             </div>
-                            <h2 className="text-xl font-title font-bold text-slate-900">
+                            <h2 className="text-xl font-title font-semibold text-slate-900">
                                 Déjà soutenues
                             </h2>
                         </div>
@@ -683,7 +683,7 @@ export default function Mission() {
 
                     {/* Comment ça marche Mobile */}
                     <div className="bg-gradient-to-br from-white via-purple-200/80 to-pink-300/80 rounded-2xl p-6 mb-10">
-                        <h2 className="text-2xl font-title font-bold mb-6 text-center text-black">
+                        <h2 className="text-2xl font-title font-semibold mb-6 text-center text-black">
                             Comment ça marche ?
                         </h2>
                         <div className="space-y-4">
@@ -692,7 +692,7 @@ export default function Mission() {
                                     <div className="w-10 h-10 bg-white/30 rounded-lg flex items-center justify-center flex-shrink-0">
                                         <span className="text-xl">1️⃣</span>
                                     </div>
-                                    <h3 className="text-base font-bold text-black font-title">Votez chaque mois</h3>
+                                    <h3 className="text-base font-semibold text-black font-title">Votez chaque mois</h3>
                                 </div>
                                 <p className="text-slate-600 text-sm leading-relaxed">
                                     Choisissez parmi 4 associations. Un vote par utilisateur et par mois.
@@ -704,7 +704,7 @@ export default function Mission() {
                                     <div className="w-10 h-10 bg-white/30 rounded-lg flex items-center justify-center flex-shrink-0">
                                         <span className="text-xl">2️⃣</span>
                                     </div>
-                                    <h3 className="text-base font-bold text-black font-title">Nous comptons</h3>
+                                    <h3 className="text-base font-semibold text-black font-title">Nous comptons</h3>
                                 </div>
                                 <p className="text-slate-600 text-sm leading-relaxed">
                                     L'association avec le plus de votes est désignée gagnante.
@@ -716,7 +716,7 @@ export default function Mission() {
                                     <div className="w-10 h-10 bg-white/30 rounded-lg flex items-center justify-center flex-shrink-0">
                                         <span className="text-xl">3️⃣</span>
                                     </div>
-                                    <h3 className="text-base font-bold text-black font-title">Prism reverse</h3>
+                                    <h3 className="text-base font-semibold text-black font-title">Prism reverse</h3>
                                 </div>
                                 <p className="text-slate-600 text-sm leading-relaxed">
                                     Nous reversons un pourcentage de nos abonnements à l'association gagnante.
@@ -727,7 +727,7 @@ export default function Mission() {
 
                     {/* Pourquoi c'est important Mobile */}
                     <div className="bg-white rounded-2xl shadow-lg p-6 mb-10">
-                        <h2 className="text-2xl font-title font-bold text-black mb-6 text-center">
+                        <h2 className="text-2xl font-title font-semibold text-black mb-6 text-center">
                             Pourquoi c'est important
                         </h2>
                         <div className="space-y-4">
@@ -744,7 +744,7 @@ export default function Mission() {
                                         <span className="text-purple-600 font-bold text-sm">{item.num}</span>
                                     </div>
                                     <div>
-                                        <h3 className="font-bold text-base text-black font-title mb-1">{item.title}</h3>
+                                        <h3 className="font-semibold text-base text-black font-title mb-1">{item.title}</h3>
                                         <p className="text-slate-600 text-sm">{item.desc}</p>
                                     </div>
                                 </div>
@@ -754,7 +754,7 @@ export default function Mission() {
 
                     {/* CTA Section Mobile */}
                     <div className="text-center bg-gradient-to-r from-slate-50 to-purple-50 rounded-2xl p-8">
-                        <h2 className="text-2xl font-bold text-black font-title mb-3">
+                        <h2 className="text-2xl font-semibold text-black font-title mb-3">
                             Une association ?
                         </h2>
                         <p className="text-base text-slate-600 mb-6">

@@ -376,7 +376,7 @@ export default function Securite() {
                                     </svg>
                                 </div>
                                 <div>
-                                    <h3 className="font-title font-bold text-xl text-slate-900 mb-2">
+                                    <h3 className="font-title font-semibold text-xl text-slate-900 mb-2">
                                         IA Intelligente
                                     </h3>
                                 </div>
@@ -409,7 +409,7 @@ export default function Securite() {
                                     </svg>
                                 </div>
                                 <div>
-                                    <h3 className="font-title font-bold text-xl text-slate-900 mb-2">
+                                    <h3 className="font-title font-semibold text-xl text-slate-900 mb-2">
                                         Bouton d'Urgence
                                     </h3>
                                 </div>
@@ -442,7 +442,7 @@ export default function Securite() {
                                     </svg>
                                 </div>
                                 <div>
-                                    <h3 className="font-title font-bold text-xl text-slate-900 mb-2">
+                                    <h3 className="font-title font-semibold text-xl text-slate-900 mb-2">
                                         Signalement & Blocage
                                     </h3>
                                 </div>
@@ -475,7 +475,7 @@ export default function Securite() {
                                     </svg>
                                 </div>
                                 <div>
-                                    <h3 className="font-title font-bold text-xl text-slate-900 mb-2">
+                                    <h3 className="font-title font-semibold text-xl text-slate-900 mb-2">
                                         Centre de Sécurité
                                     </h3>
                                 </div>
@@ -502,7 +502,7 @@ export default function Securite() {
 
                     {/* Safety Tips Section Mobile */}
                     <div className="bg-gradient-to-br from-white via-purple-200/80 to-pink-300/80 rounded-2xl p-6 mb-12">
-                        <h2 className="text-2xl font-title font-bold mb-6 text-center text-black">
+                        <h2 className="text-2xl font-title font-semibold mb-6 text-center text-black">
                             Conseils de Sécurité
                         </h2>
                         <div className="space-y-4">
@@ -511,7 +511,7 @@ export default function Securite() {
                                     <div className="w-10 h-10 bg-white/30 rounded-lg flex items-center justify-center flex-shrink-0">
                                         <span className="text-xl">🔒</span>
                                     </div>
-                                    <h3 className="text-base font-bold text-black font-title">Protégez vos Infos</h3>
+                                    <h3 className="text-base font-semibold text-black font-title">Protégez vos Infos</h3>
                                 </div>
                                 <p className="text-slate-600 text-sm leading-relaxed">
                                     Ne partagez jamais vos informations personnelles sensibles.
@@ -523,7 +523,7 @@ export default function Securite() {
                                     <div className="w-10 h-10 bg-white/30 rounded-lg flex items-center justify-center flex-shrink-0">
                                         <span className="text-xl">👥</span>
                                     </div>
-                                    <h3 className="text-base font-bold text-black font-title">Rencontres Publiques</h3>
+                                    <h3 className="text-base font-semibold text-black font-title">Rencontres Publiques</h3>
                                 </div>
                                 <p className="text-slate-600 text-sm leading-relaxed">
                                     Choisissez toujours un lieu public pour vos premières rencontres.
@@ -535,7 +535,7 @@ export default function Securite() {
                                     <div className="w-10 h-10 bg-white/30 rounded-lg flex items-center justify-center flex-shrink-0">
                                         <span className="text-xl">🚨</span>
                                     </div>
-                                    <h3 className="text-base font-bold text-black font-title">Suivez votre Instinct</h3>
+                                    <h3 className="text-base font-semibold text-black font-title">Suivez votre Instinct</h3>
                                 </div>
                                 <p className="text-slate-600 text-sm leading-relaxed">
                                     N'hésitez pas à utiliser nos outils de signalement si besoin.
@@ -546,7 +546,7 @@ export default function Securite() {
 
                     {/* Additional Security Measures Mobile */}
                     <div className="bg-white rounded-2xl shadow-lg p-6 mb-12">
-                        <h2 className="text-2xl font-bold text-black font-title mb-6 text-center">
+                        <h2 className="text-2xl font-semibold text-black font-title mb-6 text-center">
                             Protection Supplémentaire
                         </h2>
                         <div className="space-y-4">
@@ -555,7 +555,7 @@ export default function Securite() {
                                     <span className="text-purple-600 font-bold text-sm">1</span>
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-base text-black font-title mb-1">Vérification 2FA</h3>
+                                    <h3 className="font-semibold text-base text-black font-title mb-1">Vérification 2FA</h3>
                                     <p className="text-slate-600 text-sm">
                                         Authentification à deux facteurs pour plus de sécurité.
                                     </p>
@@ -567,7 +567,7 @@ export default function Securite() {
                                     <span className="text-purple-600 font-bold text-sm">2</span>
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-base text-black font-title mb-1">Chiffrement E2E</h3>
+                                    <h3 className="font-semibold text-base text-black font-title mb-1">Chiffrement E2E</h3>
                                     <p className="text-slate-600 text-sm">
                                         Conversations protégées par chiffrement militaire.
                                     </p>
@@ -579,7 +579,7 @@ export default function Securite() {
                                     <span className="text-purple-600 font-bold text-sm">3</span>
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-base text-black font-title mb-1">Contrôle de Visibilité</h3>
+                                    <h3 className="font-semibold text-base text-black font-title mb-1">Contrôle de Visibilité</h3>
                                     <p className="text-slate-600 text-sm">
                                         Gérez qui peut voir votre profil.
                                     </p>
@@ -591,7 +591,7 @@ export default function Securite() {
                                     <span className="text-purple-600 font-bold text-sm">4</span>
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-base text-black font-title mb-1">Mode Incognito</h3>
+                                    <h3 className="font-semibold text-base text-black font-title mb-1">Mode Incognito</h3>
                                     <p className="text-slate-600 text-sm">
                                         Naviguez anonymement sur la plateforme.
                                     </p>
@@ -603,7 +603,7 @@ export default function Securite() {
                                     <span className="text-purple-600 font-bold text-sm">5</span>
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-base text-black font-title mb-1">Surveillance 24/7</h3>
+                                    <h3 className="font-semibold text-base text-black font-title mb-1">Surveillance 24/7</h3>
                                     <p className="text-slate-600 text-sm">
                                         Équipe de sécurité active en permanence.
                                     </p>
@@ -615,7 +615,7 @@ export default function Securite() {
                                     <span className="text-purple-600 font-bold text-sm">6</span>
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-base text-black font-title mb-1">Éducation Continue</h3>
+                                    <h3 className="font-semibold text-base text-black font-title mb-1">Éducation Continue</h3>
                                     <p className="text-slate-600 text-sm">
                                         Conseils réguliers sur les meilleures pratiques.
                                     </p>
@@ -626,7 +626,7 @@ export default function Securite() {
 
                     {/* CTA Section Mobile */}
                     <div className="text-center bg-gradient-to-r from-slate-50 to-purple-50 rounded-2xl p-8">
-                        <h2 className="text-2xl font-bold text-black font-title mb-3">
+                        <h2 className="text-2xl font-semibold text-black font-title mb-3">
                             Besoin d'Aide ?
                         </h2>
                         <p className="text-base text-slate-600 mb-6">
