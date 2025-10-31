@@ -4,7 +4,7 @@ import React from 'react'
 
 const About = () => {
     return (
-        <section className="py-12 md:py-24 px-4 md:px-6">
+        <section className="py-12 md:py-20 px-4 md:px-6">
             <div className="max-w-7xl mx-auto">
                 <div className="flex items-center justify-center">
                     {/* Badge */}

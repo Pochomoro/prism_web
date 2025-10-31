@@ -5,7 +5,7 @@ import Image from 'next/image'
 
 const For = () => {
     return (
-        <section className="relative py-12 md:py-14 px-6 md:px-24 bg-gradient-to-br from-white via-purple-200/80 to-pink-300/80 overflow-hidden">
+        <section className="relative py-12 md:py-20 px-6 md:px-24 bg-gradient-to-br from-white via-purple-200/80 to-pink-300/80 overflow-hidden">
             <div className="flex justify-center mb-6 md:mb-8">
                 <div className="inline-flex items-center gap-3 bg-white px-4 md:px-5 py-2 md:py-2.5 rounded-full shadow-sm">
                     <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>

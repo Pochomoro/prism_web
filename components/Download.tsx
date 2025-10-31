@@ -47,7 +47,7 @@ const Download = () => {
                         </h3>
 
                         {/* Statistiques */}
-                        <div className="grid grid-cols-3 gap-4 py-6">
+                        <div className="flex gap-4 py-6">
                             <div className="text-center">
                                 <div className="text-3xl font-bold text-purple-600">10K+</div>
                                 <div className="text-sm text-gray-600 font-medium">Utilisateurs</div>

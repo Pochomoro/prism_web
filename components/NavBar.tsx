@@ -120,13 +120,13 @@ const NavBar = () => {
                             </button>
                         ) : (
                             <div className="flex items-center gap-4">
-                                <div className="bg-gradient-to-r from-purple-500 to-pink-500 rounded-full px-6 py-2.5 flex items-center gap-3">
+                                <div className="bg-gradient-to-r from-purple-500 to-pink-500 rounded-full px-6 py-2.5 flex items-center gap-3 cursor-pointer">
                                     <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
                                     <span className="text-white font-medium text-sm font-title font-semibold">Connecté</span>
                                 </div>
                                 <button
                                     onClick={handleLogout}
-                                    className="text-white hover:text-purple-400 transition-colors text-sm font-title">
+                                    className="text-white hover:text-purple-400 transition-colors text-sm font-title cursor-pointer">
                                     Déconnexion
                                 </button>
                             </div>
@@ -314,7 +314,7 @@ const NavBar = () => {
 
                             <button
                                 type="submit"
-                                className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-title font-semibold py-3 rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300">
+                                className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-title font-semibold py-3 rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer">
                                 Se Connecter
                             </button>
 

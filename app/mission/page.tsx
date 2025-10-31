@@ -489,7 +489,7 @@ export default function Mission() {
                 {/* Hero Section Mobile */}
                 <div className="relative overflow-hidden bg-gradient-to-r from-purple-600 to-purple-800">
                     <div className="absolute inset-0 bg-black opacity-10"></div>
-                    <div className="relative px-6 py-16">
+                    <div className="relative px-6 py-30">
                         <div className="text-center text-white">
                             <div className="flex items-center justify-center mb-4">
                                 <div className="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center">

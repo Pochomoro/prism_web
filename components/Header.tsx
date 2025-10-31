@@ -97,21 +97,8 @@ const Header = () => {
                         </h1>
                         <div className="w-20 h-1 bg-white/50 mx-auto rounded-full"></div>
                         <p className="text-white/90 text-xl font-medium max-w-md mx-auto leading-relaxed">
-                            Trouve l'amour authentique dans une communauté bienveillante
+                            Inclusive, Safe, Unique
                         </p>
-                    </div>
-
-                    {/* Features Pills */}
-                    <div className="flex flex-wrap justify-center gap-3 mb-12 animate-fade-in-up-delayed">
-                        <div className="bg-white/20 backdrop-blur-sm px-5 py-2.5 rounded-full border border-white/30">
-                            <span className="text-white font-medium text-sm">✓ 100% Sécurisé</span>
-                        </div>
-                        <div className="bg-white/20 backdrop-blur-sm px-5 py-2.5 rounded-full border border-white/30">
-                            <span className="text-white font-medium text-sm">✓ Vérifié par IA</span>
-                        </div>
-                        <div className="bg-white/20 backdrop-blur-sm px-5 py-2.5 rounded-full border border-white/30">
-                            <span className="text-white font-medium text-sm">✓ Gratuit</span>
-                        </div>
                     </div>
 
                     {/* Download Buttons */}
