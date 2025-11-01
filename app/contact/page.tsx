@@ -143,7 +143,7 @@ export default function FAQContact() {
                             <h1 className="font-title text-4xl md:text-5xl font-bold mb-6">
                                 Comment pouvons-nous vous aider
                             </h1>
-                            <p className="text-xl md:text-xl text-purple-100 max-w-3xl mx-auto">
+                            <p className="text-lg md:text-lg text-purple-100 max-w-3xl mx-auto">
                                 Trouvez rapidement des réponses ou contactez-nous directement
                             </p>
                         </div>
@@ -270,7 +270,7 @@ export default function FAQContact() {
                                     value={formData.nom}
                                     onChange={handleChange}
                                     required
-                                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition-all"
+                                    className="text-black w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition-all"
                                     placeholder="Votre nom"
                                 />
                             </div>
@@ -286,7 +286,7 @@ export default function FAQContact() {
                                     value={formData.email}
                                     onChange={handleChange}
                                     required
-                                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition-all"
+                                    className="text-black w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition-all"
                                     placeholder="votre@email.com"
                                 />
                             </div>
@@ -301,7 +301,7 @@ export default function FAQContact() {
                                     value={formData.sujet}
                                     onChange={handleChange}
                                     required
-                                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition-all bg-white"
+                                    className="text-gray-400 w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition-all bg-white"
                                 >
                                     <option value="">Sélectionnez un sujet</option>
                                     <option value="compte">Problème de compte</option>
@@ -324,7 +324,7 @@ export default function FAQContact() {
                                     onChange={handleChange}
                                     required
                                     rows={6}
-                                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition-all resize-none"
+                                    className="text-black w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition-all resize-none"
                                     placeholder="Décrivez votre problème ou votre question en détail..."
                                 />
                             </div>

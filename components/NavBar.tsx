@@ -1,44 +1,108 @@
 'use client';
 
 import React, { useState } from 'react';
-import Apple from "@/components/Apple";
-import Google from "@/components/Google";
 import Link from "next/link";
+import { signInWithEmailAndPassword, signOut } from "@firebase/auth";
+import { auth } from "@/lib/firebase";
+import { useAuthStore } from "@/store/useAuthStore";
 
 const NavBar = () => {
     const [isLoginOpen, setIsLoginOpen] = useState(false);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [userName, setUserName] = useState('');
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-    // Form states
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
+    // État depuis Zustand
+    const { user, logout: logoutStore } = useAuthStore();
+    const isLoggedIn = !!user;
+    const userName = user?.displayName || user?.email?.split("@")[0] || "Utilisateur";
 
-    const handleLogin = (e) => {
+    // État local pour le formulaire
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
+
+    const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setError('');
+        setError("");
 
-        if (email && password) {
-            const name = email.split('@')[0];
-            setUserName(name);
-            setIsLoggedIn(true);
+        // Validation des champs
+        if (!email.trim()) {
+            setError("Veuillez entrer votre adresse email");
+            return;
+        }
+
+        if (!password) {
+            setError("Veuillez entrer votre mot de passe");
+            return;
+        }
+
+        if (password.length < 6) {
+            setError("Le mot de passe doit contenir au moins 6 caractères");
+            return;
+        }
+
+        // Validation format email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            setError("Format d'email invalide");
+            return;
+        }
+
+        try {
+            setLoading(true);
+            await signInWithEmailAndPassword(auth, email, password);
+
+            // Réinitialisation et fermeture
             setIsLoginOpen(false);
             setIsMobileMenuOpen(false);
+            setEmail("");
+            setPassword("");
+            setError("");
+        } catch (err: any) {
+            console.error("Erreur de connexion:", err);
 
-            // Reset form
-            setEmail('');
-            setPassword('');
-        } else {
-            setError('Veuillez remplir tous les champs');
+            // Gestion détaillée des erreurs Firebase
+            switch (err.code) {
+                case "auth/invalid-email":
+                    setError("Adresse email invalide");
+                    break;
+                case "auth/user-disabled":
+                    setError("Ce compte a été désactivé");
+                    break;
+                case "auth/user-not-found":
+                    setError("Aucun compte trouvé avec cet email");
+                    break;
+                case "auth/wrong-password":
+                    setError("Mot de passe incorrect");
+                    break;
+                case "auth/invalid-credential":
+                    setError("Identifiants invalides. Vérifiez votre email et mot de passe");
+                    break;
+                case "auth/too-many-requests":
+                    setError("Trop de tentatives. Veuillez réessayer plus tard");
+                    break;
+                case "auth/network-request-failed":
+                    setError("Erreur de connexion. Vérifiez votre connexion internet");
+                    break;
+                case "auth/operation-not-allowed":
+                    setError("Cette méthode de connexion n'est pas activée");
+                    break;
+                default:
+                    setError("Erreur de connexion. Veuillez réessayer");
+            }
+        } finally {
+            setLoading(false);
         }
     };
 
-    const handleLogout = () => {
-        setIsLoggedIn(false);
-        setUserName('');
-        setIsMobileMenuOpen(false);
+    const handleLogout = async () => {
+        try {
+            await signOut(auth);
+            logoutStore();
+            setIsMobileMenuOpen(false);
+        } catch (error) {
+            console.error("Erreur lors de la déconnexion:", error);
+        }
     };
 
     const closeMobileMenu = () => {
@@ -122,7 +186,7 @@ const NavBar = () => {
                             <div className="flex items-center gap-4">
                                 <div className="bg-gradient-to-r from-purple-500 to-pink-500 rounded-full px-6 py-2.5 flex items-center gap-3">
                                     <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                                    <span className="text-white font-medium text-sm font-title font-semibold">Connecté</span>
+                                    <span className="text-white font-medium text-sm font-title font-semibold">{userName}</span>
                                 </div>
                                 <button
                                     onClick={handleLogout}
@@ -258,12 +322,18 @@ const NavBar = () => {
             {/* Login Modal */}
             {isLoginOpen && (
                 <div className="fixed inset-0 z-[70] flex items-center justify-center backdrop-blur-md animate-fade-in px-4">
-                    <div className="bg-white rounded-3xl shadow-2xl w-full max-w-md overflow-hidden animate-slide-up">
+                    <div
+                        className="absolute inset-0 bg-black/50"
+                        onClick={() => setIsLoginOpen(false)}
+                    ></div>
+
+                    <div className="bg-white rounded-3xl shadow-2xl w-full max-w-md overflow-hidden animate-slide-up relative z-10">
                         {/* Header */}
                         <div className="bg-gradient-to-r from-purple-600 to-pink-600 px-8 py-6 relative">
                             <button
                                 onClick={() => setIsLoginOpen(false)}
-                                className="absolute top-4 right-4 text-white hover:text-gray-200 transition-colors">
+                                disabled={loading}
+                                className="absolute top-4 right-4 text-white hover:text-gray-200 transition-colors disabled:opacity-50">
                                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                                 </svg>
@@ -279,8 +349,11 @@ const NavBar = () => {
                         {/* Form */}
                         <form onSubmit={handleLogin} className="px-8 py-8 space-y-6">
                             {error && (
-                                <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-lg text-sm">
-                                    {error}
+                                <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-lg text-sm flex items-start gap-2">
+                                    <svg className="w-5 h-5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                                    </svg>
+                                    <span>{error}</span>
                                 </div>
                             )}
 
@@ -291,10 +364,14 @@ const NavBar = () => {
                                 <input
                                     type="email"
                                     value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
+                                    onChange={(e) => {
+                                        setEmail(e.target.value);
+                                        setError("");
+                                    }}
                                     placeholder="votre@email.com"
-                                    className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all outline-none"
-                                    required
+                                    className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all outline-none disabled:bg-gray-100 disabled:cursor-not-allowed"
+                                    disabled={loading}
+                                    autoComplete="email"
                                 />
                             </div>
 
@@ -305,23 +382,47 @@ const NavBar = () => {
                                 <input
                                     type="password"
                                     value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
+                                    onChange={(e) => {
+                                        setPassword(e.target.value);
+                                        setError("");
+                                    }}
                                     placeholder="••••••••"
-                                    className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all outline-none"
-                                    required
+                                    className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all outline-none disabled:bg-gray-100 disabled:cursor-not-allowed"
+                                    disabled={loading}
+                                    autoComplete="current-password"
                                 />
                             </div>
 
                             <button
                                 type="submit"
-                                className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-title font-semibold py-3 rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer">
-                                Se Connecter
+                                disabled={loading}
+                                className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-title font-semibold py-3 rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-2">
+                                {loading ? (
+                                    <>
+                                        <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                        </svg>
+                                        <span>Connexion en cours...</span>
+                                    </>
+                                ) : (
+                                    "Se Connecter"
+                                )}
                             </button>
 
                             <div className="text-center">
                                 <a href="#" className="text-purple-600 hover:text-purple-700 text-sm font-medium">
                                     Mot de passe oublié ?
                                 </a>
+                            </div>
+
+                            <div className="text-center pt-4 border-t border-gray-200">
+                                <p className="text-gray-600 text-sm">
+                                    Pas encore de compte ?{' '}
+                                    <a href="#" className="text-purple-600 hover:text-purple-700 font-medium">
+                                        S'inscrire
+                                    </a>
+                                </p>
                             </div>
                         </form>
                     </div>

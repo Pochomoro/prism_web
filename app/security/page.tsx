@@ -22,7 +22,7 @@ export default function Securite() {
                             <h1 className="font-title text-4xl md:text-5xl font-bold mb-6">
                                 Votre Sécurité, Notre Priorité
                             </h1>
-                            <p className="text-xl md:text-xl text-purple-100 max-w-3xl mx-auto">
+                            <p className="text-lg md:text-lg text-purple-100 max-w-3xl mx-auto">
                                 Rencontrez en toute confiance grâce à nos technologies de pointe et nos mesures de protection complètes
                             </p>
                         </div>

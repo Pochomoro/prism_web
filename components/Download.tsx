@@ -66,7 +66,7 @@ const Download = () => {
                         <div className="space-y-4">
                             <button
                                 onClick={() => openModal('ios')}
-                                className="w-full md:w-fit font-title text-lg rounded-2xl bg-gradient-to-r from-blue-500 to-cyan-500 px-8 py-4 text-white hover:shadow-xl hover:scale-105 transition-all duration-300 inline-flex items-center justify-center gap-3 group cursor-pointer"
+                                className="w-full md:w-fit font-title text-lg rounded-2xl bg-gradient-to-r from-blue-500 to-cyan-500 px-8 py-4 text-white hover:scale-105 transition-all duration-300 inline-flex items-center justify-center gap-3 group cursor-pointer"
                             >
                                 <Apple isWhite size={"24"} />
                                 <span>Télécharger pour <span className="font-semibold">iOS</span></span>
@@ -87,7 +87,7 @@ const Download = () => {
 
                             <button
                                 onClick={() => openModal('android')}
-                                className="w-full md:w-fit font-title text-lg rounded-2xl bg-gradient-to-r from-green-500 to-emerald-500 px-8 py-4 text-white hover:shadow-xl hover:scale-105 transition-all duration-300 inline-flex items-center justify-center gap-3 group cursor-pointer"
+                                className="w-full md:w-fit font-title text-lg rounded-2xl bg-gradient-to-r from-green-500 to-emerald-500 px-8 py-4 text-white hover:scale-105 transition-all duration-300 inline-flex items-center justify-center gap-3 group cursor-pointer"
                             >
                                 <Google isWhite size={"24"} />
                                 <span>Télécharger pour <span className="font-semibold">Android</span></span>

@@ -44,7 +44,7 @@ const For = () => {
                             </svg>
                         </div>
                         <div>
-                            <h3 className="font-title font-bold text-gray-900 mb-1 text-lg">Valeurs Partagées</h3>
+                            <h3 className="font-title font-semibold text-gray-900 mb-1 text-lg">Valeurs Partagées</h3>
                             <p className="text-sm text-gray-600">Notre IA identifie vos valeurs fondamentales pour des connexions authentiques.</p>
                         </div>
                     </div>
@@ -59,7 +59,7 @@ const For = () => {
                             </svg>
                         </div>
                         <div>
-                            <h3 className="font-title font-bold text-gray-900 mb-1 text-lg">Centres d'Intérêt</h3>
+                            <h3 className="font-title font-semibold text-gray-900 mb-1 text-lg">Centres d'Intérêt</h3>
                             <p className="text-sm text-gray-600">Rencontrez des personnes qui partagent vos passions et hobbies.</p>
                         </div>
                     </div>
@@ -74,7 +74,7 @@ const For = () => {
                             </svg>
                         </div>
                         <div>
-                            <h3 className="font-title font-bold text-gray-900 mb-1 text-lg">Compatibilité Émotionnelle</h3>
+                            <h3 className="font-title font-semibold text-gray-900 mb-1 text-lg">Compatibilité Émotionnelle</h3>
                             <p className="text-sm text-gray-600">Un matching basé sur votre personnalité et vos attentes relationnelles.</p>
                         </div>
                     </div>
@@ -89,7 +89,7 @@ const For = () => {
                             </svg>
                         </div>
                         <div>
-                            <h3 className="font-title font-bold text-gray-900 mb-1 text-lg">Match en Temps Réel</h3>
+                            <h3 className="font-title font-semibold text-gray-900 mb-1 text-lg">Match en Temps Réel</h3>
                             <p className="text-sm text-gray-600">Des suggestions personnalisées qui évoluent avec vous.</p>
                         </div>
                     </div>

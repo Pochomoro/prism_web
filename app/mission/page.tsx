@@ -139,7 +139,7 @@ export default function Mission() {
                             <h1 className="font-title text-4xl md:text-5xl font-bold mb-6">
                                 Notre Mission
                             </h1>
-                            <p className="text-xl md:text-xl text-purple-100 max-w-3xl mx-auto">
+                            <p className="text-lg md:text-lg text-purple-100 max-w-3xl mx-auto">
                                 Ensemble, soutenons les associations qui œuvrent chaque jour pour la communauté LGBTQ+
                             </p>
                         </div>
